@@ -10,7 +10,7 @@
                     <el-col :offset="12" :span="8" style="min-width: 150px">
                         <el-dropdown style="float: right; margin: 20px 10px">
                             <span class="el-dropdown-link" style="color: #fff; cursor: pointer">
-                                admin &nbsp;&nbsp; <el-icon class="el-icon--right">
+                                {{ userInfoStore.username }} <el-icon class="el-icon--right">
                                     <arrow-down />
                                 </el-icon>
                             </span>
@@ -20,7 +20,6 @@
                                 </el-dropdown-menu>
                             </template>
                         </el-dropdown>
-                        <el-avatar shape="square" :src="vue" style="margin: 10px; float: right"></el-avatar>
                     </el-col>
                 </el-row>
             </el-header>
@@ -74,6 +73,7 @@ import { onBeforeMount, ref } from 'vue';
 import vue from "../assets/vue.svg"
 import { useRouter } from 'vue-router'
 import { menus } from '../utils/menus.js'
+import { useUserInfoStore } from '../store/userInfo';
 const router = useRouter();
 
 // 挂载 DOM 之前
@@ -92,6 +92,8 @@ const logout = () => {
     sessionStorage.clear();
     router.push("/login");
 }
+
+const userInfoStore = useUserInfoStore()
 </script>
 
 <style scoped>
