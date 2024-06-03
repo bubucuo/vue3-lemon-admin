@@ -34,7 +34,6 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 import userApi from "../../api/user";
 import { getIdCard, getMobile } from "../../utils/index"
 
-
 const formLabelWidth = '140px'
 
 const form = reactive({
@@ -50,11 +49,9 @@ const addUser = async () => {
     const res = await userApi.addUser(form)
     if (res.data.id) {
         ElMessage.success("添加成功")
-        getUserList()
     } else {
         ElMessage.error("添加失败")
     }
-
 }
 
 </script>

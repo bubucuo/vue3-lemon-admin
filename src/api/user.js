@@ -4,6 +4,10 @@ const login = (data) => {
   return http.post("/login", data);
 };
 
+const authDemo = (data) => {
+  return http.get("/authDemo", data);
+};
+
 // 获取用户列表
 // pageNo=1&pageSize=10
 const getUserList = (data) => {
@@ -31,6 +35,7 @@ const updateUserInfo = (data) => {
 
 export default {
   login,
+  authDemo,
   getUserList,
   addUser,
   delUser,

@@ -69,16 +69,25 @@
     </div>
 </template>
 <script setup>
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, ref, onMounted } from 'vue';
 import vue from "../assets/vue.svg"
 import { useRouter } from 'vue-router'
 import { menus } from '../utils/menus.js'
 import { useUserInfoStore } from '../store/userInfo';
+import userApi from "../api/user";
+
 const router = useRouter();
 
 // 挂载 DOM 之前
 onBeforeMount(() => {
     activePath.value = router.currentRoute._rawValue.path
+})
+
+onMounted(async () => {
+    const res = await userApi.authDemo()
+
+    console.log('%c [  ]-87', 'font-size:13px; background:pink; color:#bf2c9f;', res)
+
 })
 
 let isCollapse = ref(false);
