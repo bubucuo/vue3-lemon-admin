@@ -76,7 +76,8 @@ router.beforeEach((to, from, next) => {
   // next() 放行 next('/login') 强制跳转
 
   if (to.meta.title) {
-    document.title = "后台管理系统" + to.meta.title;
+    // document.title = "后台管理系统" + to.meta.title;
+    document.title = "cms" + to.meta.title;
   }
 
   //   登录
