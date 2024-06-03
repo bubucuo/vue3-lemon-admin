@@ -25,20 +25,20 @@ export const menus = [
   },
   {
     title: "商品管理",
-    icon: "Goods", //"el-icon-goods",
-    path: "/goods",
+    icon: "Goods", //"el-icon-product",
+    path: "/product",
     children: [
       {
         title: "商品列表",
-        path: "/goods/list",
+        path: "/product/list",
       },
       {
         title: "添加商品",
-        path: "/goods/add",
+        path: "/product/add",
       },
       {
         title: "商品详情",
-        path: "/goods/detail",
+        path: "/product/detail",
       },
     ],
   },

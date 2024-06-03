@@ -11,7 +11,7 @@ export const routes = [
     component: () => import("../views/Login.vue"),
   },
   {
-    path: "/home",
+    path: "/",
     name: "主页",
     meta: {
       title: "主页",
@@ -48,6 +48,14 @@ export const routes = [
         },
         component: () => import("../views/User/UserDetail.vue"),
       },
+
+      {
+        path: "/product/list",
+        meta: {
+          title: "商品列表",
+        },
+        component: () => import("../views/Product/index.vue"),
+      },
     ],
   },
 
@@ -80,10 +88,8 @@ router.beforeEach((to, from, next) => {
   if (!token) {
     return next("/login");
   } else {
-    next();
+    return next();
   }
-
-  return next();
 });
 
 export default router;
