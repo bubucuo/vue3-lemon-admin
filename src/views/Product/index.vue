@@ -1,9 +1,10 @@
 <template>
     <p>商品列表</p>
 
+    <input type="text" v-model="theme.color">
+
     <Detail :themeProps="theme" />
 
-    <input type="text" v-model="theme.color">
 
 </template>
 
