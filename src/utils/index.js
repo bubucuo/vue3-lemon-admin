@@ -6,3 +6,8 @@ export function getIdCard() {
 export function getMobile() {
   return "1" + Math.floor(Math.random() * Math.pow(10, 10));
 }
+
+export const getToken = () => {
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "{}");
+  return userInfo.token;
+};

@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import { getToken } from "../utils/index";
 
 export const routes = [
   {
@@ -75,7 +76,7 @@ router.beforeEach((to, from, next) => {
     return next();
   }
   //   获取token
-  const token = sessionStorage.getItem("token");
+  const token = getToken();
   if (!token) {
     return next("/login");
   } else {

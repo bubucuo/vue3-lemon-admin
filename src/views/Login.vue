@@ -56,7 +56,6 @@ const onSubmit = () => {
         if (valid) {
             const res = await userApi.login(form);
             const data = res.data
-            sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("userInfo", JSON.stringify(data));
             const userInfoStore = useUserInfoStore()
             userInfoStore.$patch(data)
