@@ -83,13 +83,6 @@ onBeforeMount(() => {
     activePath.value = router.currentRoute._rawValue.path
 })
 
-onMounted(async () => {
-    const res = await userApi.authDemo()
-
-    console.log('%c [  ]-87', 'font-size:13px; background:pink; color:#bf2c9f;', res)
-
-})
-
 let isCollapse = ref(false);
 let activePath = ref("/");
 // 保存链接的激活状态
