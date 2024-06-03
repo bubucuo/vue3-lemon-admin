@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-const routes = [
+export const routes = [
   {
     path: "/login",
     name: "login",
@@ -16,19 +16,20 @@ const routes = [
       title: "主页",
     },
     component: () => import("../views/Home.vue"),
-    redirect: "/index",
+    redirect: "/",
     children: [
       {
-        path: "/index",
+        path: "/",
         meta: {
           title: "首页",
         },
+
         component: () => import("../views/Welcome.vue"),
       },
       {
         path: "/user/list",
         meta: {
-          title: "用户管理",
+          title: "用户列表",
         },
         component: () => import("../views/User/index.vue"),
       },
@@ -49,12 +50,13 @@ const routes = [
     ],
   },
 
-  // {
-  //   path: "/user",
-  //   // redirect: "/login",
-  //   component: () => import("../views/User/index.vue"),
-  // },
+  {
+    path: "/:catchAll(.*)",
+    name: "404",
+    component: () => import("../views/404.vue"),
+  },
 ];
+
 const router = createRouter({ history: createWebHashHistory(), routes });
 
 // 挂载路由导航守卫
@@ -73,11 +75,12 @@ router.beforeEach((to, from, next) => {
     return next();
   }
   //   获取token
-  //   if (!token) {
-  //     // return next("/login");
-  //   } else {
-  //   next();
-  //   }
+  const token = sessionStorage.getItem("token");
+  if (!token) {
+    return next("/login");
+  } else {
+    next();
+  }
 
   return next();
 });

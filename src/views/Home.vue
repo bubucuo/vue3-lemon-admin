@@ -5,7 +5,7 @@
             <el-header>
                 <el-row>
                     <el-col :span="4">
-                        <p class="system-name">后台管理系统</p>
+                        <p class="system-name">cms</p>
                     </el-col>
                     <el-col :offset="12" :span="8" style="min-width: 150px">
                         <el-dropdown style="float: right; margin: 20px 10px">
@@ -34,24 +34,28 @@
                             <Fold v-if="!isCollapse" />
                         </el-icon>
                     </div>
+
                     <el-menu router :default-active="activePath" class="el-menu-vertical-demo" :collapse="isCollapse">
-                        <el-menu-item index="/index" @click="saveActiveNav('/index')">
-                            <el-icon>
-                                <house />
-                            </el-icon>
-                            <span>首页</span>
-                        </el-menu-item>
-                        <el-sub-menu index="/user">
-                            <template #title>
-                                <el-icon>
-                                    <Setting />
+                        <template v-for="item in menus" :key="item.path">
+                            <el-sub-menu v-if="item.children" :index="item.path">
+                                <template #title>
+                                    <el-icon :size="20">
+                                        <component :is="item.icon" />
+                                    </el-icon>
+                                    <span>{{ item.title }}</span>
+                                </template>
+                                <el-menu-item v-for="_item in item.children" :key="_item.path" :index="_item.path">{{
+                                    _item.title }}
+                                </el-menu-item>
+                            </el-sub-menu>
+                            <el-menu-item v-else :index="item.path">
+                                <el-icon :size="20">
+                                    <component :is="item.icon" />
                                 </el-icon>
-                                <span>用户管理</span>
-                            </template>
-                            <el-menu-item index="/user/list">用户列表</el-menu-item>
-                            <el-menu-item index="/user/detail">用户详情</el-menu-item>
-                            <el-menu-item index="/user/add">添加用户</el-menu-item>
-                        </el-sub-menu>
+                                <span>{{ item.title }} </span>
+                            </el-menu-item>
+                        </template>
+
                     </el-menu>
                 </el-aside>
                 <el-container>
@@ -69,18 +73,18 @@
 import { onBeforeMount, ref } from 'vue';
 import vue from "../assets/vue.svg"
 import { useRouter } from 'vue-router'
+import { menus } from '../utils/menus.js'
 const router = useRouter();
+
 // 挂载 DOM 之前
 onBeforeMount(() => {
-    activePath.value = sessionStorage.getItem("activePath")
-        ? sessionStorage.getItem("activePath")
-        : "/index"
+    activePath.value = router.currentRoute._rawValue.path
 })
+
 let isCollapse = ref(false);
-let activePath = ref("");
+let activePath = ref("/");
 // 保存链接的激活状态
 const saveActiveNav = (path) => {
-    sessionStorage.setItem("activePath", path);
     activePath.value = path;
 }
 const logout = () => {

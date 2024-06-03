@@ -11,6 +11,12 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     let token = sessionStorage.getItem("token");
+
+    console.log(
+      "%c [  ]-15",
+      "font-size:13px; background:pink; color:#bf2c9f;",
+      token
+    );
     if (token) {
       config.headers["token"] = token;
     }

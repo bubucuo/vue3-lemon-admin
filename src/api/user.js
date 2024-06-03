@@ -1,8 +1,9 @@
 import http from "../utils/http.js";
 
 const login = (data) => {
-  return http.post("/user/login", data);
+  return http.post("/login", data);
 };
+
 // 获取用户列表
 // pageNo=1&pageSize=10
 const getUserList = (data) => {
