@@ -45,6 +45,8 @@ const form = reactive({
     username: "admin",
     password: "1111110",
 });
+
+
 const ruleFormRef = ref();
 const rules = reactive({
     username: [{ required: true, message: "账号不能为空", trigger: "blur" }],

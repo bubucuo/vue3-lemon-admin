@@ -7,7 +7,6 @@
                     <el-button icon="Search" @click="searchUser" />
                 </template>
             </el-input>
-
         </el-card>
         <el-card>
             <el-button type="primary" @click="addUserDialogVisible = true">
@@ -57,7 +56,7 @@
             </el-table>
 
             <el-pagination v-if="searchForm.name == ''" style="margin-top:20px" :current-page="searchForm.pageNo"
-                :page-size="searchForm.pageSize" :page-sizes="[10, 20, 30, 40]"
+                :page-size="searchForm.pageSize" :page-sizes="[10, 20, 30, 40, 100]"
                 layout="->,total, sizes, prev, pager, next, jumper" :total="searchForm.total"
                 @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </el-card>
@@ -92,7 +91,6 @@ const addUser = async () => {
     } else {
         ElMessage.error("添加失败")
     }
-
 }
 
 onMounted(() => {
@@ -124,9 +122,17 @@ const handleCurrentChange = (pageNo) => {
 }
 
 const searchUser = async () => {
+    if (searchForm.name == '') {
+        getUserList()
+        return
+    }
     const res = await userApi.getUserDetail({ name: searchForm.name })
     const data = res.data
-    tableData.value = [data]
+    if (data) {
+        tableData.value = [data]
+    } else {
+        tableData.value = []
+    }
 }
 
 // 删除用户

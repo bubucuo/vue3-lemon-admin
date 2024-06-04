@@ -3,6 +3,7 @@
         <h1>ZComponent</h1>
 
         <p :style="[theme]">inject</p>
+
         <p :style="[themeProps]">props theme</p>
     </div>
 

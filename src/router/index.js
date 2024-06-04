@@ -24,7 +24,6 @@ export const routes = [
         meta: {
           title: "首页",
         },
-
         component: () => import("../views/Welcome.vue"),
       },
       {

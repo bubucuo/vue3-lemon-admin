@@ -29,8 +29,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, reactive } from "vue";
-import { ElMessage, ElMessageBox } from 'element-plus';
+import { reactive } from "vue";
+import { ElMessage } from 'element-plus';
 import userApi from "../../api/user";
 import { getIdCard, getMobile } from "../../utils/index"
 

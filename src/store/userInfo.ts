@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 
 // ! Setup Store
+// use XX Store
 export const useUserInfoStore = defineStore("userInfo", {
   state: () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "{}");
@@ -21,13 +22,5 @@ export const useUserInfoStore = defineStore("userInfo", {
       address,
       phone,
     };
-    // return {
-    //   id,
-    //   username,
-    //   age,
-    //   code,
-    //   address,
-    //   phone,
-    // };
   },
 });

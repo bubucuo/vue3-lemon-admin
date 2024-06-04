@@ -62,19 +62,17 @@
                         <!-- 主要内容 -->
                         <router-view></router-view>
                     </el-main>
-                    <el-footer>Copyright</el-footer>
+                    <!-- <el-footer>Copyright</el-footer> -->
                 </el-container>
             </el-container>
         </el-container>
     </div>
 </template>
 <script setup>
-import { onBeforeMount, ref, onMounted } from 'vue';
-import vue from "../assets/vue.svg"
+import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router'
 import { menus } from '../utils/menus.js'
 import { useUserInfoStore } from '../store/userInfo';
-import userApi from "../api/user";
 
 const router = useRouter();
 
@@ -85,10 +83,7 @@ onBeforeMount(() => {
 
 let isCollapse = ref(false);
 let activePath = ref("/");
-// 保存链接的激活状态
-const saveActiveNav = (path) => {
-    activePath.value = path;
-}
+
 const logout = () => {
     // 清除缓存
     sessionStorage.clear();
