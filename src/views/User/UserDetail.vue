@@ -1,6 +1,13 @@
 <template>
     <div>
         <el-card>
+            <el-input clearable v-model="searchForm.name" placeholder="根据用户姓名查询详情" class="input-with-select"
+                @keyup.enter="searchUser">
+                <template #append>
+                    <el-button @click="searchUser">查询详情</el-button>
+                </template>
+            </el-input>
+
             <el-input clearable v-model="searchForm.id" placeholder="根据用户id查询详情" class="input-with-select"
                 @keyup.enter="searchUser">
                 <template #append>
@@ -31,10 +38,9 @@
 </template>
 
 <script setup>
-import { onMounted, ref, reactive } from "vue";
-import { ElMessage, ElMessageBox } from 'element-plus';
+import { ref, reactive } from "vue";
+import { ElMessage } from 'element-plus';
 import userApi from "../../api/user";
-import { getIdCard, getMobile } from "../../utils/index"
 
 const formLabelWidth = '140px'
 const form = ref({
@@ -48,25 +54,23 @@ const form = ref({
 
 
 const searchForm = reactive({
-    id: '',
+    name: '',
+    id: null
 })
 
 const searchUser = async () => {
-    // const res = await userApi.getUserDetail({ id: searchForm.name })
-    const res = await userApi.getUserDetail(searchForm.id)
+    let res
+    if (searchForm.id) {
+        res = await userApi.getUserDetail(searchForm.id)
+    } else {
+        res = await userApi.getUserDetailByName(searchForm.name)
+    }
     const data = res.data
     form.value = data
     if (data) {
         ElMessage.success("查询成功")
-        // form = data
-        // form.id = data.id
-        // form.username = data.username
-        // form.age = data.age
-        // form.code = data.code
-        // form.address = data.address
-        // form.phone = data.phone
     } else {
-        ElMessage.error("查询失败")
+        ElMessage.error("数据为空，查询失败")
     }
 }
 
@@ -78,7 +82,6 @@ const updateUser = async () => {
     } else {
         ElMessage.error("更新失败")
     }
-
 }
 
 </script>

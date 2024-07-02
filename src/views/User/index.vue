@@ -13,10 +13,6 @@
                 添加用户
             </el-button>
 
-
-            <el-button type="danger" size="small" @click="deleteUser">删除</el-button>
-
-
             <el-dialog v-model="addUserDialogVisible" title="添加用户" width="500">
                 <el-form :model="form">
                     <el-form-item label="姓名:" :label-width="formLabelWidth">
@@ -127,15 +123,12 @@ const handleCurrentChange = (pageNo) => {
 }
 
 const searchUser = async () => {
-
-    // if (searchForm.name == '') {
-    //     getUserList()
-    //     return
-    // }
-    const res = await userApi.getUserDetail({ name: searchForm.name })
-
-    console.log('%c [  ]-131', 'font-size:13px; background:pink; color:#bf2c9f;', res)
-    const data = res//.data
+    if (searchForm.name == '') {
+        getUserList()
+        return
+    }
+    const res = await userApi.getUserDetailByName(searchForm.name)
+    const data = res.data
     if (data) {
         tableData.value = [data]
     } else {
@@ -145,28 +138,27 @@ const searchUser = async () => {
 
 // 删除用户
 const deleteUser = async (id) => {
-    // ElMessageBox.confirm(
-    //     '确定要删除该用户信息吗?',
-    //     {
-    //         confirmButtonText: '确定',
-    //         cancelButtonText: '取消',
-    //         type: 'warning',
-    //     }
-    // ).then(async () => {
-    // const res = await userApi.delUser({ id: id });
-    const res = await userApi.delUser(5);
-    if (res.data.id) {
-        ElMessage.success("删除成功")
-        getUserList();
-    } else {
-        ElMessage.error("删除失败")
-    }
-    // }).catch(() => {
-    //     ElMessage({
-    //         type: 'info',
-    //         message: '取消删除',
-    //     })
-    // })
+    ElMessageBox.confirm(
+        '确定要删除该用户信息吗?',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    ).then(async () => {
+        const res = await userApi.delUser(id);
+        if (res.data.id) {
+            ElMessage.success("删除成功")
+            getUserList();
+        } else {
+            ElMessage.error("删除失败")
+        }
+    }).catch(() => {
+        ElMessage({
+            type: 'info',
+            message: '取消删除',
+        })
+    })
 }
 
 </script>

@@ -22,8 +22,11 @@ const delUser = (id) => {
 
 // 获取用户信息 id=?
 const getUserDetail = (id) => {
-  // return http.get("/user/", data);
   return http.get("/user/" + id);
+};
+
+const getUserDetailByName = (name) => {
+  return http.get("/user/findOneByName/" + name);
 };
 
 const updateUserInfo = (data) => {
@@ -36,5 +39,6 @@ export default {
   addUser,
   delUser,
   getUserDetail,
+  getUserDetailByName,
   updateUserInfo,
 };

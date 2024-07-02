@@ -39,10 +39,10 @@ const formLabelWidth = '140px'
 const form = reactive({
     username: 'sy' + Math.floor(Math.random() * 10),
     password: '1111110',
-    // age: 100,
-    // code: getIdCard(),
-    // address: '杭州市萧山区' + Math.floor(Math.random() * 10) + '号',
-    // phone: getMobile(),
+    age: 100,
+    code: getIdCard(),
+    address: '杭州市萧山区' + Math.floor(Math.random() * 10) + '号',
+    phone: getMobile(),
 })
 
 const addUser = async () => {
