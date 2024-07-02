@@ -36,16 +36,13 @@
 
 <script setup>
 import userApi from "../api/user";
-import { reactive, ref, getCurrentInstance } from "vue";
+import { reactive, ref } from "vue";
 import { ElMessage } from "element-plus";
 import router from "../router/index";
-import { useUserInfoStore } from '../store/userInfo';
-const { proxy } = getCurrentInstance();
 const form = reactive({
     username: "admin",
     password: "1111110",
 });
-
 
 const ruleFormRef = ref();
 const rules = reactive({
@@ -59,8 +56,6 @@ const onSubmit = () => {
             const res = await userApi.login(form);
             const data = res.data
             sessionStorage.setItem("userInfo", JSON.stringify(data));
-            const userInfoStore = useUserInfoStore()
-            userInfoStore.$patch(data)
             if (data.access_token) {
                 router.push("/");
             } else {

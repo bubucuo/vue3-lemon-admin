@@ -1,6 +1,8 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
 import { getToken } from "./index";
+import router from "../router";
+
 // 1. 创建axios实例
 const instance = axios.create({
   // 接口
@@ -12,11 +14,6 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     let token = getToken();
-    console.log(
-      "%c [ token ]-15",
-      "font-size:13px; background:pink; color:#bf2c9f;",
-      token
-    );
     if (token) {
       config.headers["token"] = token;
       // config.headers["access_token"] = token;
@@ -44,6 +41,7 @@ instance.interceptors.response.use(
           break;
         case 401:
           ElMessage.error("未授权，请重新登录");
+          router.push("/login");
           break;
         case 403:
           ElMessage.error("拒绝访问");
