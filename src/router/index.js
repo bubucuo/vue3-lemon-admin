@@ -16,7 +16,7 @@ export const routes = [
     meta: {
       title: "主页",
     },
-    component: () => import("../views/Home.vue"),
+    component: () => import("../views/Home.vue"), // layout
     redirect: "/",
     children: [
       {
@@ -78,6 +78,8 @@ router.beforeEach((to, from, next) => {
     // document.title = "后台管理系统" + to.meta.title;
     document.title = "cms" + to.meta.title;
   }
+
+  return next();
 
   //   登录
   if (to.path === "/login") {

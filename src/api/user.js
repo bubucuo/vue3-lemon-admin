@@ -15,14 +15,15 @@ const addUser = (data) => {
 };
 
 // 删除
-const delUser = (data) => {
+const delUser = (id) => {
   // return http.del("/user/delete", data);
-  return http.post("/user/delete", data);
+  return http.post("/user/delete/" + id);
 };
 
-// 获取用户信息 name=?
-const getUserDetail = (data) => {
-  return http.get("/user/get", data);
+// 获取用户信息 id=?
+const getUserDetail = (id) => {
+  // return http.get("/user/", data);
+  return http.get("/user/" + id);
 };
 
 const updateUserInfo = (data) => {

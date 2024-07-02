@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-card>
-            <el-input clearable v-model="searchForm.name" placeholder="根据用户姓名查询详情" class="input-with-select"
+            <el-input clearable v-model="searchForm.id" placeholder="根据用户id查询详情" class="input-with-select"
                 @keyup.enter="searchUser">
                 <template #append>
                     <el-button @click="searchUser">查询详情</el-button>
@@ -48,11 +48,12 @@ const form = ref({
 
 
 const searchForm = reactive({
-    name: '',
+    id: '',
 })
 
 const searchUser = async () => {
-    const res = await userApi.getUserDetail({ name: searchForm.name })
+    // const res = await userApi.getUserDetail({ id: searchForm.name })
+    const res = await userApi.getUserDetail(searchForm.id)
     const data = res.data
     form.value = data
     if (data) {

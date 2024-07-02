@@ -8,7 +8,8 @@ export default defineConfig({
     open: false,
     proxy: {
       "/api": {
-        target: "http://localhost:8081",
+        // target: "http://localhost:9977", // java+spring+MySQL
+        target: "http://localhost:3000", // nest/express
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
