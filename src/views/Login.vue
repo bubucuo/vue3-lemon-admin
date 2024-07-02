@@ -61,7 +61,7 @@ const onSubmit = () => {
             sessionStorage.setItem("userInfo", JSON.stringify(data));
             const userInfoStore = useUserInfoStore()
             userInfoStore.$patch(data)
-            if (data.id) {
+            if (data.access_token) {
                 router.push("/");
             } else {
                 ElMessage.error(data.msg || '出错了');

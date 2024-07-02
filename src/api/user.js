@@ -1,7 +1,11 @@
 import http from "../utils/http.js";
 
 const login = (data) => {
-  return http.post("/login", data);
+  return http.post("/auth/login", data);
+};
+
+const getAuthProfile = (data) => {
+  return http.get("/auth/profile", data);
 };
 
 // 获取用户列表
@@ -35,6 +39,7 @@ const updateUserInfo = (data) => {
 
 export default {
   login,
+  getAuthProfile,
   getUserList,
   addUser,
   delUser,

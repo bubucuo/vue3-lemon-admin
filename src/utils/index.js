@@ -9,5 +9,5 @@ export function getMobile() {
 
 export const getToken = () => {
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo") || "{}");
-  return userInfo.token;
+  return userInfo.access_token; // ? Math.floor(Math.random() * 10) : null; // userInfo.token;
 };

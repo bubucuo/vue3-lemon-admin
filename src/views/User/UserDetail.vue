@@ -74,7 +74,6 @@ const searchUser = async () => {
     }
 }
 
-
 const updateUser = async () => {
     const res = await userApi.updateUserInfo(form.value)
     if (res.data.id) {

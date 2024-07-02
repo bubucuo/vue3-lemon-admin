@@ -12,8 +12,15 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     let token = getToken();
+    console.log(
+      "%c [ token ]-15",
+      "font-size:13px; background:pink; color:#bf2c9f;",
+      token
+    );
     if (token) {
       config.headers["token"] = token;
+      // config.headers["access_token"] = token;
+      // config.headers["Authorization"] = "Bearer " + token;
     }
     return config;
   },
