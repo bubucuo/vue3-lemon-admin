@@ -79,7 +79,7 @@ router.beforeEach((to, from, next) => {
     document.title = "cms" + to.meta.title;
   }
 
-  // return next();
+  return next();
 
   //   登录
   if (to.path === "/login") {
