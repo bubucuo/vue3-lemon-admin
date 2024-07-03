@@ -48,6 +48,7 @@ instance.interceptors.response.use(
           break;
         case 404:
           ElMessage.error("请求错误，未找到相应的资源");
+          router.push("/login");
           break;
         case 500:
           ElMessage.error("服务器内部错误");
