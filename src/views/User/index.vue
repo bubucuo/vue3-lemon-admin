@@ -107,7 +107,8 @@ const searchForm = reactive({
 })
 
 const getUserList = async () => {
-    const res = await userApi.getUserList(searchForm)
+    // const res = await userApi.getUserList(searchForm)
+    const res = await userApi.getUserList({ pageNo: searchForm.pageNo, pageSize: searchForm.pageSize })
     const data = res.data
     tableData.value = data.content
     searchForm.total = data.total

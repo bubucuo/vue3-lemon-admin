@@ -55,8 +55,8 @@ const onSubmit = () => {
         if (valid) {
             const res = await userApi.login(form);
             const data = res.data
-            sessionStorage.setItem("userInfo", JSON.stringify(data));
             if (data.access_token) {
+                sessionStorage.setItem("userInfo", JSON.stringify(data));
                 router.push("/");
             } else {
                 ElMessage.error(data.msg || '出错了');
