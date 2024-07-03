@@ -66,7 +66,7 @@ const searchUser = async () => {
         res = await userApi.getUserDetailByName(searchForm.name)
     }
     const data = res.data
-    form.value = data
+    form.value = Array.isArray(data) ? data[0] : data
     if (data) {
         ElMessage.success("查询成功")
     } else {

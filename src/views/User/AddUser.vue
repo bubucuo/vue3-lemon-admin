@@ -47,7 +47,7 @@ const form = reactive({
 
 const addUser = async () => {
     const res = await userApi.addUser(form)
-    if (res.data.id) {
+    if (res.data) {
         ElMessage.success("添加成功")
     } else {
         ElMessage.error("添加失败")

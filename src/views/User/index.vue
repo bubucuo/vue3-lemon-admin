@@ -131,7 +131,7 @@ const searchUser = async () => {
     const res = await userApi.getUserDetailByName(searchForm.name)
     const data = res.data
     if (data) {
-        tableData.value = [data]
+        tableData.value = Array.isArray(data) ? data : [data]
     } else {
         tableData.value = []
     }
@@ -147,7 +147,7 @@ const deleteUser = async (id) => {
             type: 'warning',
         }
     ).then(async () => {
-        const res = await userApi.delUser(100);
+        const res = await userApi.delUser(id);
         if (res.data.id) {
             ElMessage.success("删除成功")
             getUserList();
