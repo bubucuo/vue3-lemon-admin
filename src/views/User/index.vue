@@ -147,7 +147,7 @@ const deleteUser = async (id) => {
             type: 'warning',
         }
     ).then(async () => {
-        const res = await userApi.delUser(id);
+        const res = await userApi.delUser(100);
         if (res.data.id) {
             ElMessage.success("删除成功")
             getUserList();
@@ -157,7 +157,7 @@ const deleteUser = async (id) => {
     }).catch(() => {
         ElMessage({
             type: 'info',
-            message: '取消删除',
+            message: '删除失败',
         })
     })
 }
