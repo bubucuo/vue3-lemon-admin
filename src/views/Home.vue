@@ -82,7 +82,7 @@ onBeforeMount(() => {
 })
 
 onMounted(() => {
-    getUserProfile()
+    // getUserProfile()
 })
 
 const username = ref("")
