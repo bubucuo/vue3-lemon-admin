@@ -79,6 +79,8 @@ router.beforeEach((to, from, next) => {
     document.title = "cms" + to.meta.title;
   }
 
+  // ? 我在main分之加了这个，就是不校验后面的登录逻辑
+  // ? 如果想要校验登录逻辑，就把这行注释掉
   return next();
 
   //   登录
